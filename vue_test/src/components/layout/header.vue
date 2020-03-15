@@ -1,6 +1,11 @@
 <template>
 	<header class="header">
 		<h1>TodoList</h1>
+		<div id="nav">
+			<router-link to="/">Home</router-link> |
+			<router-link to="/about">About</router-link> |
+			<router-link to="/contact">Contact</router-link>
+		</div>
 	</header>
 </template>
 
@@ -11,6 +16,10 @@
 </script>
 
 <style scoped>
+	#nav a {
+		color: #fff;
+		text-decoration: none;
+	}
 	.header {
 		background-color: #333;
 		color: #fff;
