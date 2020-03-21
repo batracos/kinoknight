@@ -1,19 +1,25 @@
 <template>
-  <div>
-    <div v-for="elem in todoList" v-bind:key="elem.id">
-      <Todo v-bind:todo="elem" v-on:del-todo="$emit('del-todo', elem.id)" />
-    </div>
-  </div>
+	<div>
+		<div v-for="elem in getAllTodos" :key="elem.id">
+			<Todo :todo="elem" />
+		</div>
+	</div>
 </template>
 
 <script>
-import Todo from "./Todo.vue"
+import Todo from "./Todo.vue";
+import {mapGetters, mapActions} from "vuex";
 export default {
-  name: 'TodoList',
-  components: {
-    Todo
-  },
-  props: ['todoList']
+	name: 'TodoList',
+	components: {
+		Todo
+	},
+	methods: {
+		...mapActions(["fetchTodos"])
+	},
+	computed: mapGetters(["getAllTodos"]),
+	props: ['todoList'],
+	created() { this.fetchTodos() }
 }
 </script>
 
